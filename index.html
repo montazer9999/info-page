@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" >
+<head>
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z62ZRS9TLE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z62ZRS9TLE');
+</script>
+
+  <meta charset="UTF-8" />
+  <title>موسوعة معلومات عامة - تفاعلية وجذابة</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+    :root {
+      --color-primary: #2980b9;
+      --color-primary-dark: #1c5980;
+      --color-bg-light: #f4f6f8;
+      --color-bg-dark: #121416;
+      --color-text-light: #2c3e50;
+      --color-text-dark: #e0e0e0;
+      --color-accent: #27ae60;
+      --transition-speed: 0.3s;
+    }
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      direction: rtl;
+      font-family: 'Cairo', sans-serif, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--color-bg-light);
+      color: var(--color-text-light);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body.night {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+
+    header {
+      background-color: var(--color-primary);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    #container {
+      display: flex;
+      max-width: 1100px;
+      margin: 90px auto 40px; /* leave space for fixed header */
+      padding: 0 15px;
+      gap: 20px;
+    }
+
+    nav {
+      min-width: 200px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+      height: fit-content;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body.night nav {
+      background: #22272e;
+    }
+
+    nav h2 {
+      margin-top: 0;
+      color: var(--color-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h2 button#search-btn {
+      background-color: var(--color-accent);
+      border: none;
+      color: white;
+      font-size: 0.9rem;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color var(--transition-speed);
+    }
+
+    nav h2 button#search-btn:hover {
+      background-color: #1e8449;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin-bottom: 12px;
+    }
+
+    nav ul li button {
+      background: none;
+      border: none;
+      color: var(--color-primary-dark);
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: right;
+      width: 100%;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color var(--transition-speed);
+    }
+
+    nav ul li button:hover,
+    nav ul li button.active {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    body.night nav ul li button {
+      color: #8fb9d3;
+    }
+
+    body.night nav ul li button:hover,
+    body.night nav ul li button.active {
+      background-color: var(--color-primary-dark);
+    }
+
+    main {
+      flex: 1;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      overflow-wrap: break-word;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    body.night main {
+      background: #1e242c;
+      color: var(--color-text-dark);
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      border-bottom: 3px solid var(--color-primary);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      color: var(--color-primary);
+      font-size: 1.5rem;
+    }
+
+    body.night h2 {
+      color: var(--color-primary);
+    }
+
+    ul {
+      list-style: none;
+      padding-right: 0;
+      margin: 0;
+    }
+
+    li {
+      background: #ecf0f1;
+      margin-bottom: 10px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      cursor: default;
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+    }
+
+    li:hover {
+      background: var(--color-accent);
+      color: white;
+      transform: scale(1.03);
+    }
+
+    body.night li {
+      background: #2a333e;
+    }
+
+    body.night li:hover {
+      background: #27ae60;
+      color: white;
+    }
+
+    #search-container {
+      margin-top: 40px;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1.1rem;
+      border: 2px solid var(--color-primary);
+      border-radius: 25px;
+      outline: none;
+      transition: border-color var(--transition-speed);
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    #search-input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 5px var(--color-accent);
+    }
+
+    #search-results {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 10px;
+    }
+
+    #search-results li {
+      padding: 10px 15px;
+      background: #ecf0f1;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #search-results li:hover {
+      background-color: var(--color-accent);
+      color: white;
+    }
+
+    #no-results-msg {
+      color: #c0392b;
+      font-weight: bold;
+      display: none;
+      margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #container {
+        flex-direction: column;
+        margin: 100px 15px 20px;
+      }
+      nav {
+        position: relative;
+        top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      main {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>موسوعة معلومات عامة</h1>
+</header>
+
+<div id="container">
+
+  <nav aria-label="قائمة الأقسام">
+    <h2>
+      الأقسام
+      <button id="search-btn" title="اذهب إلى البحث">🔍 ابحث هنا</button>
+    </h2>
+    <ul>
+      <li><button data-target="nature" class="active">🌍 الطبيعة والبيئة</button></li>
+      <li><button data-target="science">🧠 العلوم والمعرفة</button></li>
+      <li><button data-target="tech">💻 التقنية والبرمجة</button></li>
+      <li><button data-target="life">🧑‍🤝‍🧑 مهارات وحياة</button></li>
+      <li><button data-target="culture">🎨 الثقافة والفنون</button></li>
+    </ul>
+  </nav>
+
+  <main id="content">
+    <section id="nature">
+      <h2>🌍 الطبيعة والبيئة</h2>
+      <ul>
+        <li>الشمس نجم في مركز نظامنا الشمسي.</li>
+        <li>الأرض هي الكوكب الثالث من الشمس.</li>
+        <li>الماء يغلي عند 100 درجة مئوية.</li>
+        <li>الأشجار تنقّي الهواء وتنتج الأكسجين.</li>
+        <li>البيئة مسؤولية الجميع.</li>
+        <li>الطاقة المتجددة تقلل التلوث.</li>
+      </ul>
+    </section>
+
+    <section id="science" hidden>
+      <h2>🧠 العلوم والمعرفة</h2>
+      <ul>
+        <li>الجاذبية تجذب الأجسام نحو بعضها.</li>
+        <li>الفضاء الخارجي هو الفراغ خارج الأرض.</li>
+        <li>الرياضيات لغة العلم.</li>
+        <li>الفيزياء تدرس الظواهر الطبيعية.</li>
+        <li>الكيمياء تدرس تفاعلات المواد.</li>
+        <li>الأحياء تدرس الكائنات الحية.</li>
+        <li>التاريخ يعطينا دروسًا من الماضي.</li>
+      </ul>
+    </section>
+
+    <section id="tech" hidden>
+      <h2>💻 التقنية والبرمجة</h2>
+      <ul>
+        <li>الإنترنت يربط ملايين الحواسيب.</li>
+        <li>الذكاء الاصطناعي يحاكي الذكاء البشري.</li>
+        <li>الروبوتات تُستخدم في الصناعة والطب.</li>
+        <li>علم الشبكات يربط الحواسيب ببعضها.</li>
+        <li>الأمن السيبراني يحمي المعلومات.</li>
+        <li>البرمجة تنشئ البرمجيات والتطبيقات.</li>
+      </ul>
+    </section>
+
+    <section id="life" hidden>
+      <h2>🧑‍🤝‍🧑 مهارات وحياة</h2>
+      <ul>
+        <li>الصحة النفسية مهمة مثل الجسدية.</li>
+        <li>العمل الجماعي يعزز التعاون.</li>
+        <li>الابتكار مفتاح التقدم.</li>
+        <li>التعليم أساس التقدّم.</li>
+        <li>الاحترام والتسامح أساس العلاقات.</li>
+        <li>السفر يوسع الآفاق ويكشف الثقافات.</li>
+      </ul>
+    </section>
+
+    <section id="culture" hidden>
+      <h2>🎨 الثقافة والفنون</h2>
+      <ul>
+        <li>اللغة العربية من أكثر اللغات تحدثًا.</li>
+        <li>القراءة توسّع المعرفة.</li>
+        <li>الفنون التشكيلية تشمل الرسم والنحت.</li>
+        <li>الموسيقى تؤثر على المشاعر والسلوك.</li>
+        <li>الثقافة تعكس حضارة الشعوب.</li>
+        <li>اللغات تعكس تنوع الثقافات.</li>
+      </ul>
+    </section>
+
+    <!-- قسم البحث الجديد -->
+    <section id="search-section" style="margin-top: 60px;">
+      <h2>🔍 البحث المتقدم</h2>
+      <input id="search-input" type="search" placeholder="اكتب كلمة للبحث..." aria-label="بحث داخل الموقع" />
+      <ul id="search-results"></ul>
+      <p id="no-results-msg">❌ لا توجد نتائج مطابقة.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+  // التنقل بين الأقسام
+  const navButtons = document.querySelectorAll('nav ul li button');
+  const sections = document.querySelectorAll('main section');
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const targetId = btn.getAttribute('data-target');
+
+      sections.forEach(section => {
+        if(section.id === targetId) {
+          section.hidden = false;
+          section.scrollIntoView({behavior: 'smooth'});
+        } else {
+          section.hidden = true;
+        }
+      });
+
+      // مسح البحث عند التنقل
+      clearSearch();
+    });
+  });
+
+  // زر البحث في القائمة
+  const searchBtn = document.getElementById('search-btn');
+  const searchSection = document.getElementById('search-section');
+
+  searchBtn.addEventListener('click', () => {
+    // إزالة التفعيل من جميع الأزرار
+    navButtons.forEach(b => b.classList.remove('active'));
+    // إخفاء جميع الأقسام
+    sections.forEach(s => s.hidden = true);
+    // إظهار قسم البحث
+    searchSection.hidden = false;
+    // التمرير إليه بسلاسة
+    searchSection.scrollIntoView({behavior: 'smooth'});
+  });
+
+  // البحث داخل بيانات الأقسام
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const noResultsMsg = document.getElementById('no-results-msg');
+
+  // جمع كل بيانات الأقسام في مصفوفة للبحث
+  const dataForSearch = [];
+
+  sections.forEach(section => {
+    if(section.id !== 'search-section') {
+      const items = section.querySelectorAll('li');
+      items.forEach(li => {
+        dataForSearch.push({text: li.textContent.trim(), section: section.id});
+      });
+    }
+  });
+
+  // تصفية وعرض نتائج البحث
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.trim().toLowerCase();
+    searchResults.innerHTML = '';
+    noResultsMsg.style.display = 'none';
+
+    if(term.length === 0) return;
+
+    const matched = dataForSearch.filter(item => item.text.toLowerCase().includes(term));
+
+    if(matched.length === 0) {
+      noResultsMsg.style.display = 'block';
+      return;
+    }
+
+    matched.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.text;
+      li.title = `القسم: ${item.section}`;
+      searchResults.appendChild(li);
+    });
+  });
+
+  // وظيفة لمسح البحث ونتائجه
+  function clearSearch() {
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+    noResultsMsg.style.display = 'none';
+  }
+
+  // تحميل الثيم حسب الوقت
+  function setThemeBasedOnTime() {
+    const hour = new Date().getHours();
+    if(hour >= 18 || hour < 6) {
+      document.body.classList.add('night');
+    } else {
+      document.body.classList.remove('night');
+    }
+  }
+  setThemeBasedOnTime();
+</script>
+
+</body>
+</html>
